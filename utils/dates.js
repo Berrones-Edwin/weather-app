@@ -24,9 +24,6 @@ export function getCurrentDate() {
     'December'
   ]
   const date = new Date()
-  //   console.log(date)
-  //   const formatDate =
-  // date.getDay() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
   const formatDate = `${daysWeek[date.getDay()]} ${date.getDate()}, ${
     namesMonths[date.getMonth() ]
   }`
