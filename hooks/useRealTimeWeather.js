@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getRealTimeWeather } from '../services/getRealTimeWeather'
 import { useGeolocation } from './useGeolocation'
 
-export const useRealTimeWeather = () => {
+export const useRealTimeWeather = (location) => {
   const [response, setResponse] = useState(null)
   const [errorResponse, setErrorResponse] = useState(null)
   const {
@@ -11,18 +11,19 @@ export const useRealTimeWeather = () => {
   } = useGeolocation()
 
   useEffect(() => {
+    let params = location ? location : { lat, lon }
     if (error) {
       setErrorResponse(error)
       return
     }
-    getRealTimeWeather({ lat, lon })
+    getRealTimeWeather(params)
       .then((res) => {
         setResponse(res)
       })
       .catch((err) => {
         setError(err)
       })
-  }, [lat, lon, error])
+  }, [ error, location, lat, lon])
 
   return { response, errorResponse }
 }
