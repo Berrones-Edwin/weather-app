@@ -1,4 +1,4 @@
-export function getRealTimeWeather({ lat, lon }) {
+export function getRealTimeWeather(params) {
   const options = {
     method: 'GET',
     headers: {
@@ -7,10 +7,16 @@ export function getRealTimeWeather({ lat, lon }) {
     }
   }
 
-  return fetch(
-    `https://weatherapi-com.p.rapidapi.com/current.json?q=${lat},${lon}`,
-    options
-  )
+  let url = ''
+  if (typeof params === 'string') {
+    url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${params}`
+  } else if (typeof params === 'object') {
+    if (params.hasOwnProperty('lat') && params.hasOwnProperty('lon')) {
+      const { lat, lon } = params
+      url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${lat},${lon}`
+    }
+  }
+  return fetch(url, options)
     .then((response) => response.json())
     .catch((err) => console.error(err))
 }
