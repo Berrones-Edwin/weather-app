@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import {
+  Stack,
   Button,
   Drawer,
   DrawerOverlay,
@@ -8,12 +9,15 @@ import {
   DrawerHeader,
   DrawerBody,
   Input,
-  DrawerFooter
+  DrawerFooter,
 } from '@chakra-ui/react'
 import { usePlace } from '../hooks/usePlace'
+import { savedata, getData } from '../utils/localstorage'
+import SearchesRecently from './SearchesRecently'
 
 const SideBarForm = ({ isOpen, onClose, btnOpen }) => {
   const [inputChange, setInputChange] = useState('')
+  const [searches, setSearches] = useState( getData())
   const { setPlace } = usePlace()
 
   const handleInputChange = (e) => {
@@ -23,6 +27,8 @@ const SideBarForm = ({ isOpen, onClose, btnOpen }) => {
     e.preventDefault()
     setPlace(inputChange)
     setInputChange('')
+    savedata(inputChange)
+    setSearches(getData())
   }
 
   return (
@@ -39,7 +45,7 @@ const SideBarForm = ({ isOpen, onClose, btnOpen }) => {
         <DrawerHeader>Search your Location</DrawerHeader>
 
         <DrawerBody>
-          <form onSubmit={handleSubmit}>
+          <Stack as={'form'} mb={'3rem'} onSubmit={handleSubmit}>
             <Input
               required
               border="1px solid white"
@@ -57,7 +63,10 @@ const SideBarForm = ({ isOpen, onClose, btnOpen }) => {
               {' '}
               Search
             </Button>
-          </form>
+          </Stack>
+          <hr />
+          <br />
+          <SearchesRecently onClose={onClose} searches={searches} />
         </DrawerBody>
 
         <DrawerFooter></DrawerFooter>
