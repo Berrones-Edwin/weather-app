@@ -6,14 +6,19 @@ export function getRealTimeWeather(params) {
       'X-RapidAPI-Key': 'dffd4a7622msh976d34b6c29f648p113c87jsn5fce08fb3853'
     }
   }
+  /**
+   * 'https://weatherapi-com.p.rapidapi.com/forecast.json?q=Mexico&days=10'
+   */
 
   let url = ''
   if (typeof params === 'string') {
-    url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${params}`
+    url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${params}&days=5`
+    // url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${params}`
   } else if (typeof params === 'object') {
     if (params.hasOwnProperty('lat') && params.hasOwnProperty('lon')) {
       const { lat, lon } = params
-      url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${lat},${lon}`
+      url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${lat},${lon}&days=5`
+      // url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${lat},${lon}`
     }
   }
   return fetch(url, options)
