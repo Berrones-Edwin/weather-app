@@ -10,10 +10,14 @@ import {
 } from '@chakra-ui/react'
 import { getCurrentDate } from '../utils/dates'
 import SideBarForm from './SideBarForm'
+import { useTemperature } from '../hooks/useTemperature'
 
 const SideBar = ({ current, location }) => {
   const btnOpen = useRef()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { temperature } = useTemperature()
+
+  let  label = temperature ==='°C' ? current.temp_c + ' °C' : current.temp_f + ' °F'
 
   return (
     <>
@@ -65,7 +69,7 @@ const SideBar = ({ current, location }) => {
           mt={'1rem'}
           height="100%"
         >
-          <Heading size={'4xl'}>{current.temp_c + ' °C'}</Heading>
+          <Heading size={'4xl'}>{label}</Heading>
           <Heading size={'xl'}>{current.condition.text}</Heading>
           <Text>Today {getCurrentDate()} </Text>
           <Text> 🌏 {location.country} </Text>
