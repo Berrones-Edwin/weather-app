@@ -1,7 +1,5 @@
-
-import {
-  Stack
-} from '@chakra-ui/react'
+import { Stack} from '@chakra-ui/react'
+import CustomRadioGroup from '../components/CustomRadioGroup'
 
 import { HeadComponent } from '../components/Head'
 import SideBar from '../components/SideBar'
@@ -9,9 +7,10 @@ import { usePlace } from '../hooks/usePlace'
 import { useRealTimeWeather } from '../hooks/useRealTimeWeather'
 
 export default function Home() {
-  const {place } = usePlace()
+  const { place } = usePlace()
   const { response, errorResponse } = useRealTimeWeather(place)
-  
+
+
   if (errorResponse) {
     ;<p>Error</p>
   }
@@ -36,10 +35,7 @@ export default function Home() {
       >
         <SideBar current={current} location={location} />
         <Stack as="section" width={'100%'} bgColor="#100E1D">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
-            commodi.
-          </p>
+         <CustomRadioGroup />
         </Stack>
       </Stack>
     </>
