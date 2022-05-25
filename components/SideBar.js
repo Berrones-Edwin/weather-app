@@ -67,7 +67,7 @@ const SideBar = ({ current, location }) => {
           justifyContent="space-around"
           alignItems={'center'}
           mt={'1rem'}
-          height="100%"
+          height="340px"
         >
           <Heading size={'4xl'}>{label}</Heading>
           <Heading size={'xl'}>{current.condition.text}</Heading>
