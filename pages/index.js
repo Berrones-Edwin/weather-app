@@ -1,11 +1,24 @@
-import { Stack } from '@chakra-ui/react'
+import {
+  Stack,
+  Heading,
+  Text,
+  Button,
+  ButtonGroup,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  Box,
+  AccordionPanel,
+  AccordionIcon
+} from '@chakra-ui/react'
 import CustomRadioGroup from '../components/CustomRadioGroup'
-
+import ImageNext from 'next/image'
 import { HeadComponent } from '../components/Head'
 import SideBar from '../components/SideBar'
 import { usePlace } from '../hooks/usePlace'
 import { useRealTimeWeather } from '../hooks/useRealTimeWeather'
 import NextDayGrid from '../components/NextDayGrid'
+import WeatherPerHour from '../components/WeatherPerHour'
 
 export default function Home() {
   const { place } = usePlace()
@@ -42,6 +55,32 @@ export default function Home() {
           <CustomRadioGroup />
 
           <NextDayGrid forecastday={forecastday} />
+          {/* <hr /> */}
+
+          <br />
+          <Stack
+            as="section"
+            mt={'2rem'}
+            justifyContent="center"
+            flexDir={'row'}
+            w="100%"
+          >
+            <Accordion w="80%" allowToggle>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Weather per Hour
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <WeatherPerHour hour={forecastday[0].hour} />
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </Stack>
         </Stack>
       </Stack>
     </>
