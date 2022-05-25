@@ -10,7 +10,7 @@ const NextDayItem = ({ day }) => {
   let labelMax =
     temperature === '°C' ? day.day.maxtemp_c + '°C' : day.day.maxtemp_f + '°F'
   return (
-    <Stack key={day.date} maxW={'200px'} bgColor="#1E213A" p={5}>
+    <Stack as='article' key={day.date} maxW={'200px'} bgColor="#1E213A" p={5}>
       <Text textAlign={'center'} mb={'1rem'}>
         {day.date}
       </Text>

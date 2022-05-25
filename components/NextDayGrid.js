@@ -4,6 +4,7 @@ import NextDayItem from './NextDayItem'
 const NextDayGrid = ({ forecastday }) => {
   return (
     <Stack
+    as={'section'}
       display={'flex'}
       flexDirection={{
         base: 'column',
