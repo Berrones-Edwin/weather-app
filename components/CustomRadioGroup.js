@@ -19,6 +19,7 @@ const CustomRadioGroup = () => {
   })
   return (
     <Stack
+    as='nav'
     className={styles.stack}
       flexDir={'row'}
       justifyContent="flex-end"
