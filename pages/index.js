@@ -6,6 +6,7 @@ import CustomRadioGroup from '../components/CustomRadioGroup'
 import SideBar from '../components/SideBar'
 import NextDayGrid from '../components/NextDayGrid'
 import DetailsAccordion from '../components/DetailsAccordion'
+import NavBar from '../components/NavBar'
 
 export default function Home() {
   const { place } = usePlace()
@@ -39,7 +40,7 @@ export default function Home() {
       >
         <SideBar current={current} location={location} />
         <Stack as="section" width={'100%'} bgColor="#100E1D">
-          <CustomRadioGroup />
+          <NavBar />
 
           <NextDayGrid forecastday={forecastday} />
 
