@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import ImageNext from 'next/image'
 import {
   Stack,
@@ -11,6 +11,7 @@ import {
 import { getCurrentDate } from '../utils/dates'
 import SideBarForm from './SideBarForm'
 import { useTemperature } from '../hooks/useTemperature'
+import ButtonOnline from './ButtonOnline'
 
 const SideBar = ({ current, location }) => {
   const btnOpen = useRef()
@@ -41,9 +42,7 @@ const SideBar = ({ current, location }) => {
           <Button onClick={onOpen} ref={btnOpen} size={'sm'} bgColor="#6E707A">
             Search for places
           </Button>
-          <Button size={'sm'} bgColor="#6E707A">
-            O
-          </Button>
+          <ButtonOnline />
         </Stack>
         {/* End Open menu */}
         <Box
