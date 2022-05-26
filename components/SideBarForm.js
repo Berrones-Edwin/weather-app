@@ -9,7 +9,7 @@ import {
   DrawerHeader,
   DrawerBody,
   Input,
-  DrawerFooter,
+  DrawerFooter
 } from '@chakra-ui/react'
 import { usePlace } from '../hooks/usePlace'
 import { savedata, getData } from '../utils/localstorage'
@@ -17,7 +17,7 @@ import SearchesRecently from './SearchesRecently'
 
 const SideBarForm = ({ isOpen, onClose, btnOpen }) => {
   const [inputChange, setInputChange] = useState('')
-  const [searches, setSearches] = useState( getData())
+  const [searches, setSearches] = useState(getData())
   const { setPlace } = usePlace()
 
   const handleInputChange = (e) => {
@@ -66,7 +66,11 @@ const SideBarForm = ({ isOpen, onClose, btnOpen }) => {
           </Stack>
           <hr />
           <br />
-          <SearchesRecently onClose={onClose} searches={searches} />
+          <SearchesRecently
+            setSearches={setSearches}
+            onClose={onClose}
+            searches={searches}
+          />
         </DrawerBody>
 
         <DrawerFooter></DrawerFooter>

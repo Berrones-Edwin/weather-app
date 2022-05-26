@@ -1,11 +1,19 @@
-import { Stack, Button, Text } from '@chakra-ui/react'
+import { Stack, Flex, Button, Text } from '@chakra-ui/react'
 import { usePlace } from '../hooks/usePlace'
+import { getData, savedata } from '../utils/localstorage'
 
-const SearchesRecently = ({ searches,onClose }) => {
+const SearchesRecently = ({ searches, onClose,setSearches }) => {
   const { setPlace } = usePlace()
   function handleClick(item) {
     setPlace(item)
     onClose()
+  }
+  function handleDeleteItem(id) {
+    let items = searches
+    items = items.filter((i) => i.id !== id)
+    localStorage.clear('searches')
+    localStorage.setItem('searches', JSON.stringify(items))
+    setSearches(items)
   }
   return (
     <Stack>
@@ -13,13 +21,20 @@ const SearchesRecently = ({ searches,onClose }) => {
         <>
           <Text textAlign={'center'}>Your recently searches </Text>
           {searches.map((s) => (
-            <Button
-              onClick={() => handleClick(s.item)}
-              bgColor="blue.600"
-              key={s.id}
-            >
-              {s.item}
-            </Button>
+            <>
+              <Flex
+                w="100%"
+                direction={'row'}
+                justifyContent={'space-between'}
+                alignItems="center"
+                key={s.id}
+              >
+                <Text onClick={() => handleClick(s.item)}>{s.item}</Text>
+                <Button onClick={() => handleDeleteItem(s.id)}>
+                  ❌
+                </Button>
+              </Flex>
+            </>
           ))}
         </>
       ) : (
