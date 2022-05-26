@@ -4,7 +4,6 @@ const Hightlights = ({current}) => {
   return (
     <Stack
     w="100%"
-    border="1px solid red"
     as="section"
     flexDir={{
       base: 'column',
@@ -36,6 +35,7 @@ const Hightlights = ({current}) => {
       flexDir="column"
       justifyContent={'center'}
       alignItems="center"
+      spacing={4}
     >
       <Text>Humidity</Text>
       <Heading size={'2xl'}>{current.humidity}%</Heading>
