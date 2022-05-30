@@ -35,7 +35,7 @@ const NavLink = ({ children }) => (
 export default function NavBar({ alert = [] }) {
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  console.log(alert)
+
   return (
     <>
       <Box bgColor="#100E1D" px={4}>

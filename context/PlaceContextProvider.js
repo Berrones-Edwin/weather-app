@@ -1,14 +1,10 @@
-import { createContext, useState, useEffect } from 'react'
-import { getData } from '../utils/localstorage'
+import { createContext, useState } from 'react'
 
 export const PlaceContext = createContext(null)
 
 const PlaceContextProvider = ({ children }) => {
   const [place, setPlace] = useState('')
 
-  useEffect(() => {
-    setPlace(getData('searches'))
-  }, [setPlace])
   return (
     <PlaceContext.Provider value={{ place, setPlace }}>
       {children}
