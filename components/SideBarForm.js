@@ -17,7 +17,7 @@ import SearchesRecently from './SearchesRecently'
 
 const SideBarForm = ({ isOpen, onClose, btnOpen }) => {
   const [inputChange, setInputChange] = useState('')
-  const [searches, setSearches] = useState(getData())
+  const [searches, setSearches] = useState(getData('searches'))
   const { setPlace } = usePlace()
 
   const handleInputChange = (e) => {
@@ -27,8 +27,8 @@ const SideBarForm = ({ isOpen, onClose, btnOpen }) => {
     e.preventDefault()
     setPlace(inputChange)
     setInputChange('')
-    savedata(inputChange)
-    setSearches(getData())
+    savedata(inputChange,'searches')
+    setSearches(getData('searches'))
   }
 
   return (

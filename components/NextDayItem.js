@@ -23,8 +23,8 @@ const NextDayItem = ({ day }) => {
         objectFit="cover"
       />
       <ButtonGroup>
-        <Button variant="ghost">{labelMin}</Button>
-        <Button variant="ghost">{labelMax}</Button>
+        <Button variant="ghost" color="red">{labelMin}</Button>
+        <Button variant="ghost" color="blue.400">{labelMax}</Button>
       </ButtonGroup>
     </Stack>
   )
