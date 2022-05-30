@@ -12,12 +12,12 @@ export function getRealTimeWeather(params) {
 
   let url = ''
   if (typeof params === 'string') {
-    url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${params}&days=5`
+    url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${params}&days=5&alerts=yes`
     // url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${params}`
   } else if (typeof params === 'object') {
     if (params.hasOwnProperty('lat') && params.hasOwnProperty('lon')) {
       const { lat, lon } = params
-      url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${lat},${lon}&days=5`
+      url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${lat},${lon}&days=5&alerts=yes`
       // url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${lat},${lon}`
     }
   }

@@ -1,4 +1,3 @@
-
 import {
   Box,
   Flex,
@@ -11,12 +10,12 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
-  useColorMode,
-} from '@chakra-ui/react';
-import { FaBell } from "react-icons/fa";
-
+  useColorMode
+} from '@chakra-ui/react'
+import { FaBell } from 'react-icons/fa'
 
 import CustomRadioGroup from './CustomRadioGroup'
+import Notifications from './Notifications'
 
 const NavLink = ({ children }) => (
   <Link
@@ -25,46 +24,52 @@ const NavLink = ({ children }) => (
     rounded={'md'}
     _hover={{
       textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
+      bg: useColorModeValue('gray.200', 'gray.700')
     }}
-    href={'#'}>
+    href={'#'}
+  >
     {children}
   </Link>
-);
+)
 
-export default function NavBar() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export default function NavBar({ alert = [] }) {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  console.log(alert)
   return (
     <>
       <Box bgColor="#100E1D" px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box><CustomRadioGroup />  </Box>
+          <Box>
+            <CustomRadioGroup />{' '}
+          </Box>
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
-              
-
               <Menu>
                 <MenuButton
                   as={Button}
                   rounded={'full'}
                   variant={'link'}
                   cursor={'pointer'}
-                  minW={0}>
-                  <FaBell size={'1.5rem'} />
+                  minW={0}
+                >
+                  <FaBell size={'1.5rem'} /> {alert.length}
                 </MenuButton>
-                <MenuList alignItems={'center'}>
-                  
-                  <MenuItem>Your Servers</MenuItem>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
-                </MenuList>
+                {alert.length > 0 ? (
+                  <>
+                    <Notifications alerts={alert} />
+                  </>
+                ) : (
+                  <MenuList alignItems={'center'}>
+                    <MenuItem>{'There are not notifications yet'}</MenuItem>
+                  </MenuList>
+                )}
               </Menu>
             </Stack>
           </Flex>
         </Flex>
       </Box>
     </>
-  );
+  )
 }

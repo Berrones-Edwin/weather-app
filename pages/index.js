@@ -2,11 +2,11 @@ import { Stack } from '@chakra-ui/react'
 import { usePlace } from '../hooks/usePlace'
 import { useRealTimeWeather } from '../hooks/useRealTimeWeather'
 import { HeadComponent } from '../components/Head'
-import CustomRadioGroup from '../components/CustomRadioGroup'
 import SideBar from '../components/SideBar'
 import NextDayGrid from '../components/NextDayGrid'
 import DetailsAccordion from '../components/DetailsAccordion'
 import NavBar from '../components/NavBar'
+import SkeletonIndex from '../components/SkeletonIndex'
 
 export default function Home() {
   const { place } = usePlace()
@@ -17,13 +17,14 @@ export default function Home() {
   }
 
   if (response === null) {
-    return <p>response null</p>
+    return <SkeletonIndex />
   }
 
   const {
     location,
     current,
-    forecast: { forecastday }
+    forecast: { forecastday },
+    alerts: { alert }
   } = response
 
   return (
@@ -40,7 +41,7 @@ export default function Home() {
       >
         <SideBar current={current} location={location} />
         <Stack as="section" width={'100%'} bgColor="#100E1D">
-          <NavBar />
+          <NavBar alerts={alert} />
 
           <NextDayGrid forecastday={forecastday} />
 
