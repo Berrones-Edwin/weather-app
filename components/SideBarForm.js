@@ -49,10 +49,11 @@ const SideBarForm = ({ isOpen, onClose, btnOpen }) => {
             <Input
               required
               border="1px solid white"
-              placeholder="Search Location"
+              placeholder="City or Lat/Lon or ZipCode"
               name="location"
               value={inputChange}
               onChange={handleInputChange}
+              
             />
             <Button
               onClick={onClose}

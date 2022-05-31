@@ -1,4 +1,4 @@
-export function getCurrentDate() {
+export function getCurrentDate(_date) {
   const daysWeek = [
     'Sunday',
     'Monday',
@@ -23,7 +23,8 @@ export function getCurrentDate() {
     'November',
     'December'
   ]
-  const date = new Date()
+
+  const date = new Date(_date)
   const formatDate = `${daysWeek[date.getDay()]} ${date.getDate()}, ${
     namesMonths[date.getMonth() ]
   }`

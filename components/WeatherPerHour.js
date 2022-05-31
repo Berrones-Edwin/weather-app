@@ -4,18 +4,16 @@ import CardWeatherPerHour from './CardWeatherPerHour'
 const WeatherPerHour = ({hour}) => {
   return (
     <Stack
+    ml={'1px'}
       as={'section'}
       display={'flex'}
-      flexDirection={{
-        base: 'column',
-        md: 'row'
-      }}
+      flexDirection={'row'}
+      overflowX={'auto'}
       justifyContent="space-around"
-      wrap={'wrap'}
-      alignItems={'center'}
-      p={3}
-      spacing={5}
-      w="100%"
+       alignItems={'center'}
+       w='100%'
+       whiteSpace={'nowrap'}
+       overflowY='hidden'
     >
       {hour.map((d) => (
         <CardWeatherPerHour key={d.time} data={d} />

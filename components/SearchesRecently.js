@@ -46,7 +46,9 @@ const SearchesRecently = ({ searches, onClose, setSearches }) => {
                 alignItems="center"
                 key={s.id}
               >
-                <Text onClick={() => handleClick(s.item)}>{s.item}</Text>
+                <Text cursor={'pointer'} _hover={{
+                  color:'yellow'
+                }} onClick={() => handleClick(s.item)}>{s.item}</Text>
                 <ButtonGroup>
                   <Button onClick={() => handleFavorites(s.item)}>⭐</Button>
                   <Button onClick={() => handleDeleteItem(s.id)}>❌</Button>
@@ -56,7 +58,7 @@ const SearchesRecently = ({ searches, onClose, setSearches }) => {
           ))}
         </>
       ) : (
-        <Text>You do not have recently searches </Text>
+        <Text>You do not have recently searches 😪</Text>
       )}
 
       <hr />
@@ -81,7 +83,7 @@ const SearchesRecently = ({ searches, onClose, setSearches }) => {
             </>
           ))}
         </>
-      ) : null}
+      ) : <Text>You do not have favorites places 😪 </Text>}
     </Stack>
   )
 }

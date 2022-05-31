@@ -19,6 +19,7 @@ const SideBar = ({ current, location }) => {
   const { temperature } = useTemperature()
 
   let  label = temperature ==='°C' ? current.temp_c + ' °C' : current.temp_f + ' °F'
+  let  labelFeelLike = temperature ==='°C' ? current.feelslike_c + ' °C' : current.feelslike_f + ' °F'
 
   return (
     <>
@@ -70,7 +71,8 @@ const SideBar = ({ current, location }) => {
         >
           <Heading size={'4xl'}>{label}</Heading>
           <Heading size={'xl'}>{current.condition.text}</Heading>
-          <Text>Today {getCurrentDate()} </Text>
+          <Heading size={'sm'}>Feels like: {labelFeelLike}</Heading>
+          <Text>Today {getCurrentDate(location.localtime)} </Text>
           <Text> 🌏 {location.country} </Text>
         </Stack>
       </Stack>

@@ -54,7 +54,7 @@ export default function NavBar({ alert = [] }) {
                   cursor={'pointer'}
                   minW={0}
                 >
-                  <FaBell size={'1.5rem'} /> {alert.length}
+                  <FaBell size={'1.5rem'} />
                 </MenuButton>
                 {alert.length > 0 ? (
                   <>
