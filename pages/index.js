@@ -1,4 +1,5 @@
-import { Stack, Heading } from '@chakra-ui/react'
+import { useState } from 'react'
+import { Stack, Heading, Checkbox } from '@chakra-ui/react'
 import { usePlace } from '../hooks/usePlace'
 import { useRealTimeWeather } from '../hooks/useRealTimeWeather'
 import { HeadComponent } from '../components/Head'
@@ -6,14 +7,17 @@ import SideBar from '../components/SideBar'
 import NextDayGrid from '../components/NextDayGrid'
 import Hightlights from '../components/Hightlights'
 import NavBar from '../components/NavBar'
-import SkeletonIndex from '../components/SkeletonIndex'
 import WeatherPerHour from '../components/WeatherPerHour'
 import CurrentChart from '../components/CurrentChart'
-// import CurrentChart from '../components/CurrentChart'
 
 export default function Home() {
   const { place } = usePlace()
+  const [showHours, setShowHours] = useState(true)
   const { response, errorResponse } = useRealTimeWeather(place)
+
+  const handleChange = () => {
+    setShowHours(!showHours)
+  }
 
   if (errorResponse) {
     ;<p>Error</p>
@@ -62,35 +66,24 @@ export default function Home() {
 
           <Stack
             as="section"
-            mt={'2rem'}
-            justifyContent="center"
+            // mt={'2rem'}
+            justifyContent="space-around"
             flexDir={'row'}
             alignItems={'center'}
             maxW="100vw"
           >
-            <Stack
-              as="section"
-              mt={'2rem'}
-              justifyContent="center"
-              flexDir={'column'}
-              alignItems={'center'}
-              maxW="70vw"
-              p={4}
-            >
-              <Heading>Weather per Hour</Heading>
-              <WeatherPerHour hour={forecastday[0].hour} />
-            </Stack>
+            <Heading>Weather per Hour</Heading>
+            <Checkbox onChange={handleChange} defaultChecked={showHours}>
+              Hours
+            </Checkbox>
           </Stack>
-          {/* <Stack
-            as="section"
-            mt={'2rem'}
-            justifyContent="center"
-            flexDir={'row'}
-            alignItems={'center'}
-            maxW="100vw"
-          >
+
+          {showHours ? (
+            <WeatherPerHour hour={forecastday[0].hour} />
+          ) : (
             <CurrentChart data={forecastday[0].hour} />
-          </Stack> */}
+          )}
+
           <Stack
             as="section"
             mt={'2rem'}

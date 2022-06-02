@@ -1,3 +1,4 @@
+import { Stack } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
 import { useTemperature } from '../hooks/useTemperature'
@@ -37,7 +38,7 @@ const CurrentChart = ({ data }) => {
         temperature === '°C' ? d.temp_c : d.temp_f
       ])
     })
-  }, [data,temperature])
+  }, [data, temperature])
 
   const data2 = {
     labels: hours,
@@ -46,7 +47,7 @@ const CurrentChart = ({ data }) => {
         label: 'Temperature',
         backgroundColor: '#EAC435',
         borderColor: 'rgba(234, 196, 53,0.5)',
-        values
+        data: values
       }
     ]
   }
@@ -54,24 +55,49 @@ const CurrentChart = ({ data }) => {
     responsive: true,
     maintainAspectRatio: false,
     aspectRatio: 3,
+    plugins: {
+      legend: {
+        position: 'top',
+        display: false
+      }
+    },
     scales: {
       x: {
         ticks: {
-          color: 'yellow'
+          color: 'gray'
         }
       },
       y: {
         ticks: {
-          color: 'yellow'
+          color: 'gray'
         }
       }
     }
   }
 
   return (
-    <div>
-      <Line options={options} data={data2} />
-    </div>
+    <Stack
+      as="section"
+      mt={'2rem'}
+      justifyContent="center"
+      flexDir={'row'}
+      alignItems={'center'}
+      maxW="100vw"
+    >
+      <Stack
+        as="section"
+        mt={'2rem'}
+        justifyContent="center"
+        flexDir={'column'}
+        alignItems={'center'}
+        maxW="90vw"
+        w="90%"
+        p={4}
+      >
+        {' '}
+        <Line options={options} data={data2} />
+      </Stack>
+    </Stack>
   )
 }
 
