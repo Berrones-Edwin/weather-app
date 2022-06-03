@@ -12,14 +12,19 @@ import { getCurrentDate } from '../utils/dates'
 import SideBarForm from './SideBarForm'
 import { useTemperature } from '../hooks/useTemperature'
 import ButtonOnline from './ButtonOnline'
+import { flagsCountries } from '../data/flags-countries'
 
 const SideBar = ({ current, location }) => {
   const btnOpen = useRef()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { temperature } = useTemperature()
 
-  let  label = temperature ==='°C' ? current.temp_c + ' °C' : current.temp_f + ' °F'
-  let  labelFeelLike = temperature ==='°C' ? current.feelslike_c + ' °C' : current.feelslike_f + ' °F'
+  let label =
+    temperature === '°C' ? current.temp_c + ' °C' : current.temp_f + ' °F'
+  let labelFeelLike =
+    temperature === '°C'
+      ? current.feelslike_c + ' °C'
+      : current.feelslike_f + ' °F'
 
   return (
     <>
@@ -73,7 +78,18 @@ const SideBar = ({ current, location }) => {
           <Heading size={'xl'}>{current.condition.text}</Heading>
           <Heading size={'sm'}>Feels like: {labelFeelLike}</Heading>
           <Text>Today {getCurrentDate(location.localtime)} </Text>
-          <Text> 🌏 {location.country} </Text>
+
+          <ImageNext
+            src={
+              flagsCountries.filter(
+                (f) => f.name.toLowerCase() === location.country.toLowerCase()
+              )[0].flag
+            }
+            objectFit='contain'
+            height="150"
+            width="100"
+          />
+          <Text>{location.country}</Text>
         </Stack>
       </Stack>
       <SideBarForm isOpen={isOpen} onOpen={onOpen} onClose={onClose} />

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn.weatherapi.com'],
+    domains: ['cdn.weatherapi.com','upload.wikimedia.org'],
   },
 }
 
