@@ -1,10 +1,11 @@
-import { Stack, Flex, Button, Text, ButtonGroup } from '@chakra-ui/react'
+import { Stack, Flex, Button, Text, ButtonGroup, useToast } from '@chakra-ui/react'
 import { usePlace } from '../hooks/usePlace'
 import { getData, savedata } from '../utils/localstorage'
 import { useFavorites } from '../hooks/useFavorites'
 
 const SearchesRecently = ({ searches, onClose, setSearches }) => {
   const { setPlace } = usePlace()
+  const toast = useToast()
 
   const { favorites, setFavorites } = useFavorites()
 
@@ -18,6 +19,14 @@ const SearchesRecently = ({ searches, onClose, setSearches }) => {
     localStorage.clear('searches')
     localStorage.setItem('searches', JSON.stringify(items))
     setSearches(items)
+
+    toast({
+      title: 'Item deleted.',
+      description: "We've deleted the country for you.",
+      status: 'error',
+      duration: 1000,
+      isClosable: true,
+    })
   }
   function handleDeleteFavorite(id) {
     let items = favorites
@@ -25,11 +34,27 @@ const SearchesRecently = ({ searches, onClose, setSearches }) => {
     localStorage.clear('favorites')
     localStorage.setItem('favorites', JSON.stringify(items))
     setFavorites(items)
+
+    toast({
+      title: 'Favorite deleted.',
+      description: "We've deleted the country for you.",
+      status: 'error',
+      duration: 1000,
+      isClosable: true,
+    })
   }
 
   function handleFavorites(item) {
+    
     savedata(item, 'favorites')
     setFavorites(getData('favorites'))
+    toast({
+      title: 'Favorite added.',
+      description: "We've added your country for you.",
+      status: 'success',
+      duration: 1000,
+      isClosable: true,
+    })
   }
 
   return (
