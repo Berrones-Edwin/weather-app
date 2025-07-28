@@ -1,6 +1,6 @@
 export function getRealTimeWeather(params) {
 
-  const rapidApiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY;
+  const rapidApiKey = process.env.NEXT_PRIVATE_RAPIDAPI_KEY;
   const options = {
     method: 'GET',
     headers: {
