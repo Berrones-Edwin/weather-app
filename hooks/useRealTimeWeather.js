@@ -23,7 +23,7 @@ export const useRealTimeWeather = (location) => {
       .catch((err) => {
         setError(err)
       })
-  }, [ error, location, lat, lon])
+  }, [error, location, lat, lon])
 
   return { response, errorResponse }
 }

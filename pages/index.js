@@ -20,7 +20,17 @@ export default function Home() {
   }
 
   if (errorResponse) {
-    ;<p>Error</p>
+    return (
+      <Stack
+        flexDir={'row'}
+        justifyContent="center"
+        alignItems={'center'}
+        w="100vw"
+        h="100vh"
+      >
+        <p>Ha ocurrido un error, intentalo de nuevo...</p>
+      </Stack>
+    )
   }
 
   if (response === null) {
@@ -66,7 +76,6 @@ export default function Home() {
 
           <Stack
             as="section"
-            // mt={'2rem'}
             justifyContent="space-around"
             flexDir={'row'}
             alignItems={'center'}
